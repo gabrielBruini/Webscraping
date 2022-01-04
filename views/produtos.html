@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <style>       
+        
+        .grid-template {
+        display: grid;
+	    grid-template-columns: 400px 400px 400px 400px;
+        }
+        h4, h1 {
+            text-align: center;
+        }
+
+        ul li {
+            display: inline-block;
+            margin: 10px;
+           
+        }
+        li img {
+            width: 200px;
+            border: 2px solid black;
+            height: 200px;
+        }
+        
+
+    </style>
+    <div>
+        <h1>Produtos</h1>
+        <hr>
+        <section class="grid-template">           
+          
+         
+        </section>
+      
+        </div>      
+
+
+    
+
+    <script>       
+            //Uma função feita para visualizar os produtos, preços e a imagem pesquisada
+            (async () => {
+          const response = await fetch("../searchgoogle.json")
+            const data = await response.json()
+            const htmlList = data.map(obj => {
+              
+              if(obj.img != undefined) {
+                  document.querySelector(".grid-template").innerHTML += `
+                  <div>
+                      <ul>
+                           <li>
+                             <img src="${obj.img}">
+
+                          </li>
+                      </ul>
+                      
+                      <h4>${obj.nome}<span> ${obj.preco}</span></h4>
+
+
+                      </div>                  `
+              }
+             
+
+          })          
+                      
+
+        })()     
+
+    </script>
+</body>
+</html>
